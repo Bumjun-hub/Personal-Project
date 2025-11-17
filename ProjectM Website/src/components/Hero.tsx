@@ -1,15 +1,31 @@
 // src/components/Hero.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
 type HoverZone = "left" | "center" | "right" | null;
 
 const Hero: React.FC = () => {
   const [hovered, setHovered] = useState<HoverZone>(null);
+  const [showScroll, setShowScroll] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowScroll(false);
+      } else {
+        setShowScroll(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="pm-hero">
       <div className="hero-inner">
+
+        {/* 패널 3개 */}
         <div
           className={`pm-strip ${hovered ? `hover-${hovered}` : ""}`}
           onMouseLeave={() => setHovered(null)}
@@ -65,6 +81,15 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* 👇 패널 바로 밑으로 이동된 Scroll Down */}
+        {showScroll && (
+          <div className="scroll-indicator">
+            <span>더 많은 정보를 확인 해보세요</span>
+            <div className="arrow"></div>
+          </div>
+        )}
+
       </div>
     </section>
   );

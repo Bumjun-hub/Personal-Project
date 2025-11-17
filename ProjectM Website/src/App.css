@@ -1,6 +1,11 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;         /* ← 이렇게 변경 */
   text-align: center;
+}
+
+
+body{
+  padding-top: 72px;
 }

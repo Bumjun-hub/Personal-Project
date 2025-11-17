@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 4rem 0 2rem;
+  padding: 6rem 0 5rem;
   background: var(--bg-main);
   box-sizing: border-box;
   padding-bottom: 4rem;
@@ -176,4 +176,50 @@
   transform: skewX(10deg) translateY(0);
   /* hover 시에도 보정 유지 */
 }
+
+/* 스크롤 안내 문구 + 화살표 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  opacity: 0.8;
+  animation: fadeIn 2s ease-out forwards;
+  pointer-events: none; /* 클릭 안 되게 */
+}
+
+.scroll-indicator span {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+/* 아래 화살표 */
+.scroll-indicator .arrow {
+  width: 16px;
+  height: 16px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+  margin: 0 auto;
+
+  animation: arrowBounce 1.2s infinite ease-in-out;
+}
+
+/* 연하게 등장 */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  100% { opacity: 0.8; transform: translate(-50%, 0); }
+}
+
+/* 위아래로 계속 움직이는 애니메이션 */
+@keyframes arrowBounce {
+  0% { transform: translateY(0) rotate(-45deg); }
+  50% { transform: translateY(8px) rotate(-45deg); }
+  100% { transform: translateY(0) rotate(-45deg); }
+}
+
 
