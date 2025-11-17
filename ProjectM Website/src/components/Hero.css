@@ -1,0 +1,134 @@
+:root {
+  --bg-main: #000;
+  --line-color: #f5f5f5;
+}
+
+.pm-hero {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  box-sizing: border-box;
+}
+
+.hero-inner {
+  width: min(1200px, 85vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.pm-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+/* 패널 전체 영역 */
+.pm-strip {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* 패널(이미지) 영역 */
+.pm-panel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease;
+}
+
+.pm-panel-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pm-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* hover된 패널 이미지만 강조 */
+.pm-panel:hover .pm-image {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* ===================== */
+/* 선 4개 (항상 존재)     */
+/* ===================== */
+
+.hero-lines {
+  pointer-events: none; /* 선은 마우스 이벤트 안 받게 */
+  position: absolute;
+  inset: 0;
+}
+
+/* 기본 선 스타일 */
+.hero-line {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  width: 2px;
+  background-color: var(--line-color);
+  transform: rotate(-15deg);
+  transition: left 0.35s ease;
+}
+
+/* 기본 위치: /   /      /   / */
+.line-1 {
+  left: 15%;
+}
+.line-2 {
+  left: 35%;
+}
+.line-3 {
+  left: 65%;
+}
+.line-4 {
+  left: 85%;
+}
+
+/* =============================== */
+/*   hover 구간에 따른 선 위치 조정 */
+/* =============================== */
+
+/* 왼쪽 구간에 hover: 1,2번 선만 바깥으로 벌어짐 */
+/* => /        /   /   / */
+.pm-strip.hover-left .line-1 {
+  left: 10%;
+}
+.pm-strip.hover-left .line-2 {
+  left: 42%;
+}
+
+/* 가운데 구간에 hover: 2,3번 선만 벌어짐 */
+/* => /   /        /   / */
+.pm-strip.hover-center .line-2 {
+  left: 30%;
+}
+.pm-strip.hover-center .line-3 {
+  left: 70%;
+}
+
+/* 오른쪽 구간에 hover: 3,4번 선만 벌어짐 */
+/* => /   /   /        / */
+.pm-strip.hover-right .line-3 {
+  left: 58%;
+}
+.pm-strip.hover-right .line-4 {
+  left: 90%;
+}
