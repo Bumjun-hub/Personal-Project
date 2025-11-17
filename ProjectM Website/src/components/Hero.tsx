@@ -10,20 +10,10 @@ const Hero: React.FC = () => {
   return (
     <section className="pm-hero">
       <div className="hero-inner">
-        <h1 className="pm-title">Project M</h1>
-
         <div
           className={`pm-strip ${hovered ? `hover-${hovered}` : ""}`}
           onMouseLeave={() => setHovered(null)}
         >
-          {/* 선 4개 (항상 고정, 위치만 애니메이션) */}
-          <div className="hero-lines">
-            <div className="hero-line line-1" />
-            <div className="hero-line line-2" />
-            <div className="hero-line line-3" />
-            <div className="hero-line line-4" />
-          </div>
-
           {/* 왼쪽 패널 */}
           <div
             className="pm-panel pm-panel-left"
@@ -31,10 +21,13 @@ const Hero: React.FC = () => {
           >
             <div className="pm-panel-inner">
               <img
-                src="/images/shot-left.png"
+                src="/images/shot-left.jpg"
                 alt="왼쪽 인게임 스크린샷"
                 className="pm-image"
               />
+              <div className="pm-overlay">
+                <p>광기가 뒤덮은 세계</p>
+              </div>
             </div>
           </div>
 
@@ -45,10 +38,13 @@ const Hero: React.FC = () => {
           >
             <div className="pm-panel-inner">
               <img
-                src="/images/shot-center.png"
+                src="/images/shot-center.jpg"
                 alt="대표 인게임 스크린샷"
                 className="pm-image"
               />
+              <div className="pm-overlay">
+                <p>신에게 선택받은 선지자</p>
+              </div>
             </div>
           </div>
 
@@ -63,6 +59,9 @@ const Hero: React.FC = () => {
                 alt="오른쪽 인게임 스크린샷"
                 className="pm-image"
               />
+              <div className="pm-overlay">
+                <p>대검으로 펼치는 전투</p>
+              </div>
             </div>
           </div>
         </div>

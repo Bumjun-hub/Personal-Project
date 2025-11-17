@@ -1,0 +1,24 @@
+.pm-header {
+  position: sticky; /* 스크롤해도 상단에 붙어 있게 */
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9); /* 약간 반투명한 검정 */
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pm-header-inner {
+  height: 72px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+.pm-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
