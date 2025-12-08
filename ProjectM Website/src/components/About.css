@@ -1,8 +1,11 @@
 .about {
   width: 100%;
     padding-top: 8rem;
-  background: #000; /* Hero와 자연스럽게 연결되는 어두운 톤 */
+  background: transparent;
+  
 }
+
+
 
 .about-inner {
   width: min(1100px, 85vw);

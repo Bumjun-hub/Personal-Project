@@ -34,8 +34,15 @@ const Features = () => {
 
         {/* 공격 */}
         <div className="feature-item left">
-          <div className="feature-gif-box"></div>
+          <div className="feature-gif-box">
+             <img
+                src="/images/공격.gif"
+                alt="패링 테스트"
+                className="pm-image"
+              />
+          </div>
           <div className="feature-text">
+            
             <h4>공격</h4>
             <p>묵직한 대검으로 강력한 타격을 가합니다.</p>
           </div>
@@ -45,25 +52,20 @@ const Features = () => {
         <div className="feature-item right">
           <div className="feature-gif-box">
             <img
-                src="/images/gameplay.gif"
+                src="/images/구르기.gif"
                 alt="패링 테스트"
                 className="pm-image"
               />
           </div>
           <div className="feature-text">
-            <h4>패링</h4>
-            <p>타이밍을 맞춰 적의 공격을 되받아치는 핵심 능력.</p>
+            <h4>회피</h4>
+            <p>타이밍을 맞춰 적의 공격을 회피하는 핵심 능력.</p>
           </div>
         </div>
 
         {/* 가드 */}
         <div className="feature-item left">
           <div className="feature-gif-box">
-             <img
-                src="/images/questsystem.gif"
-                alt="패링 테스트"
-                className="pm-image"
-              />
           </div>
           <div className="feature-text">
             <h4>가드</h4>
@@ -79,7 +81,7 @@ const Features = () => {
           <div className="feature-gif-wide">
             <div className="feature-gif-wide">
   <img
-    src="/images/questsystem.gif"
+    src="/images/스토리.png"
     alt="퀘스트"
     className="feature-gif-img"
   />

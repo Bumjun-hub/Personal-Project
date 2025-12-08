@@ -1,5 +1,5 @@
 :root {
-  --bg-main: #000;
+  --bg-main: #0a0a0c;
 }
 
 /* 전체 Hero 영역 */
@@ -9,9 +9,10 @@
   justify-content: center;
   align-items: flex-start;
   padding: 6rem 0 5rem;
-  background: var(--bg-main);
+  background: transparent;
   box-sizing: border-box;
   padding-bottom: 4rem;
+
 }
 
 .hero-inner {
@@ -113,6 +114,16 @@
   pointer-events: none;
 }
 
+.pm-panel-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('/images/noise.png') repeat;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+
 /* Hover 시 패널이 살짝 어두워짐 */
 .pm-panel:hover .pm-panel-inner::before {
   background: rgba(0, 0, 0, 0.45);
@@ -158,24 +169,43 @@
 
 .pm-overlay {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  color: #fff;
-  font-size: 1.4rem;
-  font-weight: 600;
-  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 
-  transition: all 0.5s ease;
+  z-index: 5;
+  opacity: 0;
+  filter: blur(6px);
+
+  transition: opacity 0.8s ease, filter 1.2s ease;
   pointer-events: none;
-  z-index: 3;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  /* 클릭 방지 */
 }
 
 .pm-panel:hover .pm-overlay {
   opacity: 1;
-  transform: skewX(10deg) translateY(0);
-  /* hover 시에도 보정 유지 */
+  filter: blur(0px);
 }
+
+/* 메인 타이틀 */
+.overlay-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+/* 서브 타이틀 */
+.overlay-sub {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
 
 /* 스크롤 안내 문구 + 화살표 */
 .scroll-indicator {
@@ -187,7 +217,8 @@
   color: #fff;
   opacity: 0.8;
   animation: fadeIn 2s ease-out forwards;
-  pointer-events: none; /* 클릭 안 되게 */
+  pointer-events: none;
+  /* 클릭 안 되게 */
 }
 
 .scroll-indicator span {
@@ -211,15 +242,28 @@
 
 /* 연하게 등장 */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: translate(-50%, 10px); }
-  100% { opacity: 0.8; transform: translate(-50%, 0); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, 0);
+  }
 }
 
 /* 위아래로 계속 움직이는 애니메이션 */
 @keyframes arrowBounce {
-  0% { transform: translateY(0) rotate(-45deg); }
-  50% { transform: translateY(8px) rotate(-45deg); }
-  100% { transform: translateY(0) rotate(-45deg); }
+  0% {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  50% {
+    transform: translateY(8px) rotate(-45deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
 }
-
-
