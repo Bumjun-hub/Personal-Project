@@ -1,0 +1,50 @@
+.about {
+  width: 100%;
+    padding-top: 8rem;
+  background: transparent;
+  
+}
+
+
+
+.about-inner {
+  width: min(1100px, 85vw);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.about-desc {
+  font-size: 1.2rem;
+  line-height: 1.9;
+  opacity: 0.85;
+  margin-bottom: 1.6rem;
+}
+
+.about-desc.strong {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  opacity: 1;
+}
+
+
+/* 처음엔 숨김 상태 */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* 화면에 등장하면 활성화 */
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+

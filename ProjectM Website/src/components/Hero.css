@@ -1,134 +1,269 @@
 :root {
-  --bg-main: #000;
-  --line-color: #f5f5f5;
+  --bg-main: #0a0a0c;
 }
 
+/* 전체 Hero 영역 */
 .pm-hero {
-  min-height: 100vh;
   width: 100vw;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: var(--bg-main);
+  align-items: flex-start;
+  padding: 6rem 0 5rem;
+  background: transparent;
   box-sizing: border-box;
+  padding-bottom: 4rem;
+
 }
 
 .hero-inner {
-  width: min(1200px, 85vw);
+  width: min(1300px, 90vw);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
 }
 
-.pm-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-}
+/* =================================== */
+/*         패널 묶음(3개)               */
+/* =================================== */
 
-/* 패널 전체 영역 */
 .pm-strip {
-  position: relative;
-  width: 100%;
-  height: 380px;
   display: flex;
-  gap: 0;
-  overflow: hidden;
+  width: 100%;
+  height: 460px;
+  gap: 3rem;
+  overflow: visible !important;
+  /* 강제 오버라이드 */
+  position: relative;
+
+  padding-right: 100px;
+  /* hover 시 오른쪽 모서리 안 잘리도록 여유 */
+  padding-left: 100px;
+  /* 왼쪽도 균형감 */
+  margin-right: -100px;
+  /* 패딩으로 인해 전체 구조가 밀리지 않게 보정 */
+  margin-left: -100px;
 }
 
-/* 패널(이미지) 영역 */
+/* =================================== */
+/*           개별 패널 기본              */
+/* =================================== */
+
 .pm-panel {
   flex: 1;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s ease;
+  overflow: hidden;
+  border-radius: 10px;
+
+  /* 기본 평행사변형 */
+  transform: skewX(-10deg);
+  transform-origin: center;
+
+  /* 튀어나감 보정 */
+  width: 120%;
+  height: 100%;
+
+  transition: all 0.6s ease;
 }
+
+/* =================================== */
+/*     내부 컨테이너 (역 skew 보정)      */
+/* =================================== */
 
 .pm-panel-inner {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  /* 평행사변형 튀어나감 대비 여유 */
+  width: 150%;
+  height: 120%;
+
+  /* 역기울임 + 위치맞춤 */
+  transform: skewX(10deg) translate(-20%, -10%);
+  transform-origin: center;
+
   overflow: hidden;
+  transition: transform 0.6s ease;
 }
 
+/* 실제 이미지 */
 .pm-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.03);
-  transition: transform 0.35s ease, filter 0.35s ease;
+  transition: transform 0.6s ease;
+  z-index: 1;
+  /* 이미지 */
 }
 
-/* hover된 패널 이미지만 강조 */
-.pm-panel:hover .pm-image {
-  transform: scale(1.1);
-  filter: brightness(1.1);
-}
 
-/* ===================== */
-/* 선 4개 (항상 존재)     */
-/* ===================== */
+/* =================================== */
+/*     패널 전체를 어둡게 하는 레이어   */
+/* =================================== */
 
-.hero-lines {
-  pointer-events: none; /* 선은 마우스 이벤트 안 받게 */
+.pm-panel-inner::before {
+  content: "";
   position: absolute;
   inset: 0;
+  background: rgba(0, 0, 0, 0);
+  /* 기본: 투명 */
+  z-index: 2;
+  /* 어둡게 레이어가 이미지 위로 올라오게 */
+  transition: background 0.4s ease;
+  pointer-events: none;
 }
 
-/* 기본 선 스타일 */
-.hero-line {
+.pm-panel-inner::after {
+  content: "";
   position: absolute;
-  top: -20%;
-  bottom: -20%;
-  width: 2px;
-  background-color: var(--line-color);
-  transform: rotate(-15deg);
-  transition: left 0.35s ease;
+  inset: 0;
+  background: url('/images/noise.png') repeat;
+  opacity: 0.06;
+  pointer-events: none;
 }
 
-/* 기본 위치: /   /      /   / */
-.line-1 {
-  left: 15%;
-}
-.line-2 {
-  left: 35%;
-}
-.line-3 {
-  left: 65%;
-}
-.line-4 {
-  left: 85%;
+
+/* Hover 시 패널이 살짝 어두워짐 */
+.pm-panel:hover .pm-panel-inner::before {
+  background: rgba(0, 0, 0, 0.45);
+  /* 원하는 밝기 조절 가능 */
 }
 
-/* =============================== */
-/*   hover 구간에 따른 선 위치 조정 */
-/* =============================== */
 
-/* 왼쪽 구간에 hover: 1,2번 선만 바깥으로 벌어짐 */
-/* => /        /   /   / */
-.pm-strip.hover-left .line-1 {
-  left: 10%;
-}
-.pm-strip.hover-left .line-2 {
-  left: 42%;
-}
+/* =================================== */
+/*            Hover 상태 효과            */
+/* =================================== */
 
-/* 가운데 구간에 hover: 2,3번 선만 벌어짐 */
-/* => /   /        /   / */
-.pm-strip.hover-center .line-2 {
-  left: 30%;
-}
-.pm-strip.hover-center .line-3 {
-  left: 70%;
+/* ⭐ 전체 hover 시 세 패널 기본 비율 재조정 */
+.pm-strip:hover .pm-panel {
+  flex: 1;
+  width: 110%;
+  /* 옆 패널 여유 → 절대 안 잘림 */
 }
 
-/* 오른쪽 구간에 hover: 3,4번 선만 벌어짐 */
-/* => /   /   /        / */
-.pm-strip.hover-right .line-3 {
-  left: 58%;
+/* ⭐ hover된 패널만 강조 (가로폭 크게) */
+.pm-strip:hover .pm-panel:hover {
+  flex: 2.5;
+  transform: skewX(0deg) scaleX(1.05);
 }
-.pm-strip.hover-right .line-4 {
-  left: 90%;
+
+/* ⭐ hover된 패널 내부 보정 */
+.pm-strip:hover .pm-panel:hover .pm-panel-inner {
+  transform: skewX(0deg);
+}
+
+/* ⭐ hover 상태에서 옆의 패널은 skew 완화 (안 짤리게) */
+.pm-strip:hover .pm-panel:not(:hover) {
+  transform: skewX(-8deg);
+}
+
+/* 이미지 확대 */
+.pm-panel:hover .pm-image {
+  transform: scale(1.1);
+}
+
+/* =================================== */
+/*          패널 오버레이 텍스트        */
+/* =================================== */
+
+.pm-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  z-index: 5;
+  opacity: 0;
+  filter: blur(6px);
+
+  transition: opacity 0.8s ease, filter 1.2s ease;
+  pointer-events: none;
+  /* 클릭 방지 */
+}
+
+.pm-panel:hover .pm-overlay {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* 메인 타이틀 */
+.overlay-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+/* 서브 타이틀 */
+.overlay-sub {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+
+/* 스크롤 안내 문구 + 화살표 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 270px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+  opacity: 0.8;
+  animation: fadeIn 2s ease-out forwards;
+  pointer-events: none;
+  /* 클릭 안 되게 */
+}
+
+.scroll-indicator span {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  opacity: 0.9;
+}
+
+/* 아래 화살표 */
+.scroll-indicator .arrow {
+  width: 16px;
+  height: 16px;
+  border-left: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(-45deg);
+  margin: 0 auto;
+
+  animation: arrowBounce 1.2s infinite ease-in-out;
+}
+
+/* 연하게 등장 */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* 위아래로 계속 움직이는 애니메이션 */
+@keyframes arrowBounce {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+  }
+
+  50% {
+    transform: translateY(8px) rotate(-45deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
 }
