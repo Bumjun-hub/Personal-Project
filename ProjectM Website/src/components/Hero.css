@@ -114,11 +114,12 @@
   pointer-events: none;
 }
 
+
 .pm-panel-inner::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('/images/noise.png') repeat;
+  background: url("../assets/images/noise.png") repeat; /* ← 슬래시(/) 없이, 상대경로 */
   opacity: 0.06;
   pointer-events: none;
 }
