@@ -54,7 +54,7 @@ src/
   type HoverZone = "left" | "center" | "right" | null;
 
 
-  2. Hero 섹션 – Hover 기반 인터랙션 UI
+### 2. Hero 섹션 – Hover 기반 인터랙션 UI
 
 3개의 패널로 구성된 Hero 섹션
 
@@ -75,7 +75,7 @@ Hover 시:
 
 스타일과 로직의 역할 분리
 
-3. About 섹션 – 스크롤 진입 애니메이션
+### 3. About 섹션 – 스크롤 진입 애니메이션
 
 IntersectionObserver를 활용한 Fade-up 애니메이션
 
@@ -83,7 +83,7 @@ IntersectionObserver를 활용한 Fade-up 애니메이션
 
 비교적 단순한 기능이지만 실제 서비스에서 자주 쓰이는 패턴 학습
 
-4. Features 섹션 – 게임 시스템 소개
+### 4. Features 섹션 – 게임 시스템 소개
 
 전투 시스템 (공격 / 패링 / 가드)
 
