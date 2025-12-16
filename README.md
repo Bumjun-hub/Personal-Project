@@ -9,7 +9,7 @@ Unity 기반 판타지 RPG **Project M**의 세계관과 핵심 시스템을 소
 ---
 
 ## 🔗 Demo
-- (배포 주소 추가 예정)
+- https://bumjun-hub.github.io/Personal-Project/
 
 ---
 
