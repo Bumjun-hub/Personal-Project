@@ -1,26 +1,21 @@
-# Personal-Project
-
 # Project M – Game Promotion Website
 
-Unity 기반 판타지 RPG **Project M**의 세계관과 핵심 시스템을 소개하기 위한  
-싱글 페이지 게임 홍보 웹사이트입니다.  
-다크 판타지 분위기를 살린 UI/UX와 인터랙션 중심의 Hero 섹션을 중점적으로 구현했습니다.
+TypeScript 학습을 목적으로 제작한 **소규모 게임 홍보 웹사이트**입니다.  
+대규모 기능 구현보다는 **React + TypeScript 구조 이해와 타입 적용 경험**에 집중하여  
+프로젝트 범위를 의도적으로 제한했습니다.
+
+게임 홍보 사이트라는 명확한 콘셉트 안에서  
+컴포넌트 분리, 상태 관리, DOM 타입 지정 등  
+실무에서 자주 사용되는 패턴을 연습하는 것을 목표로 했습니다.
 
 ---
 
-## 🔗 Demo
-- https://bumjun-hub.github.io/Personal-Project/
+## 📌 프로젝트 목적
 
----
-
-## 📌 프로젝트 개요
-
-- **프로젝트 성격**: 게임 홍보용 웹사이트 (포트폴리오)
-- **구성**: Hero / About / Features
-- **핵심 목표**
-  - 게임 세계관을 직관적으로 전달
-  - 정적인 소개 페이지가 아닌 **인터랙티브한 경험 제공**
-  - 실제 게임 홍보 페이지(Elden Ring, Lies of P 등)를 참고한 구조 설계
+- React 환경에서 TypeScript를 사용하는 흐름에 익숙해지기
+- 상태, 이벤트, DOM 접근에 타입을 적용하며 안정성 체감
+- 복잡한 비즈니스 로직 없이 **UI 중심 컴포넌트 설계 경험**
+- 작은 규모에서도 구조와 가독성을 고려한 코드 작성 연습
 
 ---
 
@@ -28,63 +23,91 @@ Unity 기반 판타지 RPG **Project M**의 세계관과 핵심 시스템을 소
 
 - **Frontend**
   - React
-  - TypeScript
+  - **TypeScript**
   - Vite
 - **Styling**
-  - CSS (Component 단위 분리)
-- **ETC**
-  - IntersectionObserver API
-  - Hover / Scroll 기반 인터랙션
+  - CSS (컴포넌트별 분리)
 
 ---
 
-## 🎮 주요 기능 및 구현 내용
+## 📂 프로젝트 구조
 
-### 1. Hero 섹션 – 인터랙티브 패널 UI
+src/
+└─ components/
+├─ Header.tsx / Header.css
+├─ Hero.tsx / Hero.css
+├─ About.tsx / About.css
+└─ Features.tsx / Features.css
 
-- 3개의 평행사변형 패널 구성
-- 패널 Hover 시:
-  - 해당 패널 확대
-  - Skew 해제 + 이미지 Zoom 효과
-  - 어두운 오버레이 및 텍스트 노출
-- CSS `transform`, `skew`, `flex`를 활용한 고난도 레이아웃 구현
-- 이미지 잘림 문제 해결을 위해 padding / margin 보정 적용
 
-**핵심 포인트**
-- 단순 캐러셀이 아닌 **Hover 기반 시각적 강조**
-- 게임 분위기를 전달하는 첫 진입 경험 설계
+- 컴포넌트 단위로 명확한 책임 분리
+- UI / 로직 분리를 고려한 구조
 
 ---
 
-### 2. About 섹션 – 세계관 소개
+## 🎮 주요 구현 내용
 
-- 게임 스토리 중심의 서사적 텍스트 구성
-- `IntersectionObserver`를 활용한 Fade-up 애니메이션
-- Hero 섹션과 자연스럽게 이어지는 다크 톤 배경 유지
+### 1. TypeScript 적용 전략
 
----
+- 상태 값에 명확한 타입 정의
+  ```ts
+  type HoverZone = "left" | "center" | "right" | null;
 
-### 3. Features 섹션 – 게임 시스템 소개
 
-#### ⚔️ 전투 시스템
-- 공격 / 패링 / 가드 구성
-- GIF + 텍스트 조합 레이아웃
-- 패링 파트는 좌우 반전 레이아웃으로 전투 리듬 강조
+  2. Hero 섹션 – Hover 기반 인터랙션 UI
 
-#### 📜 퀘스트 시스템
-- 와이드 GIF 레이아웃
-- `object-fit: cover`로 GIF 비율 문제 해결
-- 스토리 중심 진행 구조 강조
+3개의 패널로 구성된 Hero 섹션
 
----
+Hover 시:
 
-### 4. Scroll & Animation
+패널 확대 및 Skew 해제
 
-- 스크롤 진입 시 요소 등장 애니메이션
-- CSS Transition + JS Observer 조합
-- 과도하지 않은 연출로 몰입감 유지
+이미지 Zoom 효과
 
----
+오버레이 텍스트 노출
 
-## 📂 폴더 구조
+시각적 효과는 CSS로 처리하고
+상태 관리 및 제어는 TypeScript로 담당
+
+학습 포인트
+
+상태 기반 UI 제어
+
+스타일과 로직의 역할 분리
+
+3. About 섹션 – 스크롤 진입 애니메이션
+
+IntersectionObserver를 활용한 Fade-up 애니메이션
+
+관찰 대상 요소를 useRef로 관리
+
+비교적 단순한 기능이지만 실제 서비스에서 자주 쓰이는 패턴 학습
+
+4. Features 섹션 – 게임 시스템 소개
+
+전투 시스템 (공격 / 패링 / 가드)
+
+GIF + 텍스트 조합 레이아웃
+
+좌우 반전 레이아웃으로 전투 리듬 표현
+
+퀘스트 시스템
+
+와이드 GIF 구성
+
+object-fit: cover를 활용해 비율 문제 해결
+
+프로젝트 규모
+
+페이지 수: Single Page
+
+컴포넌트 수: 4개
+
+데이터 처리: 정적 데이터 기반
+
+의도
+
+기능 확장보다는
+TypeScript를 사용하는 흐름과 패턴을 이해하는 데 집중
+
 
