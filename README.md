@@ -112,4 +112,8 @@ object-fit: cover를 활용해 비율 문제 해결
 기능 확장보다는
 TypeScript를 사용하는 흐름과 패턴을 이해하는 데 집중
 
+링크
+
+https://bumjun-hub.github.io/Personal-Project/
+
 
