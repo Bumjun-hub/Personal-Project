@@ -32,12 +32,14 @@ TypeScript 학습을 목적으로 제작한 **소규모 게임 홍보 웹사이�
 
 ## 📂 프로젝트 구조
 
+```ts
 src/
 └─ components/
 ├─ Header.tsx / Header.css
 ├─ Hero.tsx / Hero.css
 ├─ About.tsx / About.css
 └─ Features.tsx / Features.css
+```
 
 
 - 컴포넌트 단위로 명확한 책임 분리
